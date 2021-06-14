@@ -2,6 +2,7 @@ import os
 
 import discord
 import random
+import time
 
 from dotenv import load_dotenv
 from discord import message
@@ -22,6 +23,12 @@ async def sugg(ctx, *args):
     with open('suggestions.txt', 'a') as f:
         f.write(" ".join(args[:]) + '\n')
     
-    await ctx.send('Thank you for your feedback! Please let me know if you have anymore.')
+    await ctx.send('Thank you for your feedback! Please let me know if you have anymore.', delete_after = 3)
+    time.sleep(2)
+    await ctx.message.delete()
+
+@bot.command(name = 'clear')
+async def clear(ctx, amount = 10):
+    await ctx.channel.purge(limit = amount)
 
 bot.run(TOKEN)
