@@ -3,6 +3,7 @@ import os
 import discord
 import random
 import time
+from discord import client
 
 from dotenv import load_dotenv
 from discord import message
@@ -48,7 +49,7 @@ async def on_message(message):
 
 @bot.event
 async def on_message(message):
-    if "test" in message.content:
+    if bot.user.mentioned_in(message):
         await message.channel.send("You dare invoke me, fool!")
     await bot.process_commands(message)
 
