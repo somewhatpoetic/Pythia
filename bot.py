@@ -38,11 +38,18 @@ async def on_message(message):
 async def clear(ctx, amount = 50):
     await ctx.channel.purge(limit = amount)
 
+# Redo this for foul language
 @bot.event
 async def on_message(message):
     warn = "Manners maketh man. Mind your language."
     if message.content == 'stfu':
         await message.channel.send(warn) 
+    await bot.process_commands(message)
+
+@bot.event
+async def on_message(message):
+    if "test" in message.content:
+        await message.channel.send("You dare invoke me, fool!")
     await bot.process_commands(message)
 
 bot.run(TOKEN)
