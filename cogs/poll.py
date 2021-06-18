@@ -21,7 +21,7 @@ class Poll(commands.Cog):
     async def poll(self, ctx):
         # Extracting question from message
         rawMessage = ctx.message.content
-        message = rawMessage.replace("D poll ", "")
+        message = rawMessage.replace(".poll ", "")
         splitMessage = list(message.split("/"))
         question = splitMessage[0]
         splitMessage.pop(0)
