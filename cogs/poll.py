@@ -27,9 +27,10 @@ class Poll(commands.Cog):
         splitMessage.pop(0)
 
         # Assigning emojis to each option
+        randomizedList = random.sample(self.emojiList, len(self.emojiList))
         optionsList = []
         for x in range(len(splitMessage)):
-            optionsList += '\n {}   {}'.format(self.emojiList[x], splitMessage[x])
+            optionsList += '\n {} {}'.format(randomizedList[x], splitMessage[x])
 
         # Creating embedded message
         pollEmbed = discord.Embed(title = question, description = ''.join(optionsList), color = 0x83bae3)
@@ -37,7 +38,7 @@ class Poll(commands.Cog):
 
         # Adding reactions to embed
         for i in range(len(splitMessage)):
-            await e.add_reaction(self.emojiList[i])
+            await e.add_reaction(randomizedList[i])
 
         await ctx.message.delete()
 
