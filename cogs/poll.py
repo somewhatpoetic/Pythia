@@ -25,7 +25,7 @@ class Poll(commands.Cog):
         splitMessage.pop(0)
 
         # Assigning emojis to each option
-        randomizedList = random.sample(self.emojiList, len(self.emojiList))
+        randomizedList = random.sample(self.emojiList, 20)
         optionsList = []
         for x in range(len(splitMessage)):
             optionsList += '\n {} {}'.format(randomizedList[x], splitMessage[x])
