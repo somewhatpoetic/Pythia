@@ -1,8 +1,6 @@
 import discord
 import random
-from discord import emoji
 from discord.ext import commands
-from discord.ext.commands.bot import Bot
 
 class Poll(commands.Cog):
 
