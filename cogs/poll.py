@@ -2,7 +2,6 @@ import discord
 import random
 from emojiList import emojiList
 from discord.ext import commands
-from emoji.core import emojize
 
 class Poll(commands.Cog):
 
