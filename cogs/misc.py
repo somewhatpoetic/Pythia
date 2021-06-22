@@ -18,7 +18,7 @@ class Misc(commands.Cog):
     # clear command
     @commands.command()
     async def clear(self, ctx, amt: int):
-        await ctx.channel.purge(limit = amt)
+        await ctx.channel.purge(limit = amt + 1)
         
 def setup(bot):
     bot.add_cog(Misc(bot))
