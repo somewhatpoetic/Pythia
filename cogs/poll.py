@@ -31,7 +31,7 @@ class Poll(commands.Cog):
             optionsList += '\n {} {}'.format(randomizedList[x], splitMessage[x])
 
         # Creating embedded message
-        pollEmbed = discord.Embed(title = question, description = ''.join(optionsList), color = 0x83bae3)
+        pollEmbed = discord.Embed(title = question, description = ''.join(optionsList), color = 0x00ff00)
         e = await ctx.send(embed = pollEmbed)
 
         # Adding reactions to embed
