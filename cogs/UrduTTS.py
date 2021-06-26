@@ -10,5 +10,6 @@ class UrduTTS(commands.Cog):
     async def on_ready(self):
         print('UrduTTS is ready.')
 
+
 def setup(bot):
     bot.add_cog(UrduTTS(bot))

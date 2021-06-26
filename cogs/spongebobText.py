@@ -7,10 +7,8 @@ class SpongebobText(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-
     @commands.command()
     async def sbt(self, ctx):
-        #letters = list(ctx.message.content.replace(".sbt ", "").lower())
         rawMessage = ctx.message.content
         message = rawMessage.replace('.sbt ', '')
         lower = message.lower()
