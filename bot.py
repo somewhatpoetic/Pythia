@@ -7,10 +7,12 @@ load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD = os.getenv('DISCORD_GUILD')
 
-bot = commands.Bot(command_prefix = ['.'])
+bot = commands.Bot(command_prefix=['.'])
 
 # load extension
-@bot.command(hidden = True)
+
+
+@bot.command(hidden=True)
 async def load(ctx, extension):
     bot.load_extension(f'cogs.{extension}')
 
@@ -20,6 +22,8 @@ for fname in os.listdir('./cogs'):
         bot.load_extension(f'cogs.{fname[:-3]}')
 
 # on ready
+
+
 @bot.event
 async def on_ready():
     print(f'{bot.user.name} is ready!')
