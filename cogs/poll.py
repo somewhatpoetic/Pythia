@@ -3,6 +3,7 @@ import random
 from emojiList import emojiList
 from discord.ext import commands
 
+
 class Poll(commands.Cog):
 
     def __init__(self, bot):
@@ -28,11 +29,15 @@ class Poll(commands.Cog):
         randomizedList = random.sample(self.emojiList, 20)
         optionsList = []
         for x in range(len(splitMessage)):
-            optionsList += '\n {} {}'.format(randomizedList[x], splitMessage[x])
+            optionsList += '\n {} {}'.format(
+                randomizedList[x], splitMessage[x])
 
         # Creating embedded message
-        pollEmbed = discord.Embed(title = question, description = ''.join(optionsList), color = 0x00ff00)
-        e = await ctx.send(embed = pollEmbed)
+        pollEmbed = discord.Embed(
+            title=question,
+            description=''.join(optionsList),
+            color=0x00ff00)
+        e = await ctx.send(embed=pollEmbed)
 
         # Adding reactions to embed
         for i in range(len(splitMessage)):
