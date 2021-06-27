@@ -1,7 +1,6 @@
 
 import gtts
 from discord.ext import commands
-from playsound import playsound
 
 
 class UrduTTS(commands.Cog):
@@ -19,8 +18,6 @@ class UrduTTS(commands.Cog):
         text = userText.replace('.urduTTS ', '')
         audio = gtts.gTTS(text=text, lang='ur')
         audio.save('urduTTS.mp3')
-
-        playsound('urduTTS.mp3')
 
 
 def setup(bot):
