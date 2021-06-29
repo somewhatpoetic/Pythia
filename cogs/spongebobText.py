@@ -21,6 +21,7 @@ class SpongebobText(commands.Cog):
             if (i % 2 == 0):
                 if letters[i] == ' ':
                     letters[i+1] = letters[i+1].upper()
+                    i += 1
                 else:
                     letters[i] = letters[i].upper()
 
