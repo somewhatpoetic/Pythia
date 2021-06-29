@@ -18,8 +18,11 @@ class SpongebobText(commands.Cog):
         letters = list(lower)
 
         for i in range(0, len(letters)):
-            if (i % 2 == 0) and not ' ':
-                letters[i] = letters[i].upper()
+            if (i % 2 == 0):
+                if letters[i] == ' ':
+                    letters[i+1] = letters[i+1].upper()
+                else:
+                    letters[i] = letters[i].upper()
 
         sbText = ''.join(letters)
         await ctx.send(sbText)
