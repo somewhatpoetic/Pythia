@@ -1,13 +1,15 @@
-from discord.ext import commands
 import time
 
+from discord.ext.commands import command
+from discord.ext.commands import Cog
 
-class SpongebobText(commands.Cog):
+
+class SpongebobText(Cog):
 
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(
+    @command(
         help='Outputs text in the Spongebob meme format',
         brief='Output text in the Spongebob meme format'
     )
@@ -17,13 +19,19 @@ class SpongebobText(commands.Cog):
         lower = message.lower()
         letters = list(lower)
 
+        """
+        letters = ['M', 'y', ' ', 'n', 'a', 'm', 'e', ' ']
+        """
+
+        offset = 0
         for i in range(0, len(letters)):
-            if (i % 2 == 0):
+            offset += i
+            if (offset % 2 == 0):
                 if letters[i] == ' ':
-                    letters[i+1] = letters[i+1].upper()
-                    i += 2
+                    letters[offset] = letters[offset].upper()
+                    offset += 1
                 else:
-                    letters[i] = letters[i].upper()
+                    letters[offset] = letters[offset].upper()
 
         sbText = ''.join(letters)
         await ctx.send(sbText)
@@ -31,7 +39,7 @@ class SpongebobText(commands.Cog):
         time.sleep(3)
         await ctx.message.delete()
 
-    @commands.Cog.listener()
+    @Cog.listener()
     async def on_ready(self):
         print('Spongebob Text Generator is ready.')
 
