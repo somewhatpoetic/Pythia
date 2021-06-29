@@ -32,8 +32,6 @@ class SpongebobText(Cog):
                     offset += 1
                 else:
                     letters[offset] = letters[offset].upper()
-            else:
-                break
 
         sbText = ''.join(letters)
         await ctx.send(sbText)
