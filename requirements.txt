@@ -2,3 +2,4 @@ discord
 python-dotenv
 emoji
 gtts
+discord.ext.menus
