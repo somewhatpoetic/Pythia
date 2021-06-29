@@ -2,59 +2,89 @@ from typing import Optional
 
 from discord import Embed
 from discord.utils import get
+from discord.ext.menus import MenuPages, ListPageSource
 from discord.ext.commands import Cog
 from discord.ext.commands import command
 
 
 def syntax(command):
-    cmd_and_aliases = "|".join(str(command))
+    cmd_and_aliases = "|".join([str(command), *command.aliases])
     params = []
 
     for key, value in command.params.items():
         if key not in ("self", "ctx"):
             params.append(
-                f"[{key}]" if "NoneType" in str(value) else f'<{key}>'
+                f"[{key}]" if "NoneType" in str(value) else f"<{key}>"
             )
+
     params = " ".join(params)
 
-    return f"```{cmd_and_aliases} {params}```"
+    return f"`{cmd_and_aliases} {params}`"
+
+
+class HelpMenu(ListPageSource):
+    def __init__(self, ctx, data):
+        self.ctx = ctx
+
+        super().__init__(data, per_page=3)
+
+    async def write_page(self, menu, fields=[]):
+        offset = (menu.current_page * self.per_page) + 1
+        len_data = len(self.entries)
+
+        embed = Embed(title="Information",
+                      description=(
+                          "Welcome to the Delphi Assistance Menu!.\n\nFor more\
+ information, use the `.help` command followed by whatever command you wish to\
+ inquire more about.\nExample: `.help clear`\n\nUse the navigation reactions o\
+n this message to look through all the commands.\n\nAdditionally, if you would\
+ like to recieve the Official Delphi Handbook, use the command: `.handbook`"
+                      ),
+                      colour=self.ctx.author.colour)
+        embed.set_thumbnail(url=self.ctx.guild.me.avatar_url)
+        embed.set_footer(
+            text=f"{offset:,} - {min(len_data, offset+self.per_page-1):,} of {len_data:,} commands.")
+
+        for name, value in fields:
+            embed.add_field(name=name, value=value, inline=False)
+
+        return embed
+
+    async def format_page(self, menu, entries):
+        fields = []
+
+        for entry in entries:
+            fields.append((entry.brief or "No description", syntax(entry)))
+
+        return await self.write_page(menu, fields)
 
 
 class Help(Cog):
-
     def __init__(self, bot):
         self.bot = bot
-        self.bot.remove_command('help')
+        self.bot.remove_command("help")
 
-    @Cog.listener()
-    async def on_ready(self):
-        print('Help menu is ready.')
+    async def cmd_help(self, ctx, command):
+        embed = Embed(title=f"Help with `{command}`",
+                      description=syntax(command),
+                      colour=ctx.author.colour)
+        embed.add_field(name="Command description", value=command.help)
+        await ctx.send(embed=embed)
 
-    def cmd_help(self, ctx, command):
-        embed = Embed(
-            title='{command}',
-            description=syntax(command),
-            color=ctx.author.color
-        )
-        embed.add_field(name="Command Description", value=command.help)
-
-    @command(
-        aliases=[
-            "Help",
-            "Assistance",
-            "assistance",
-            "assist"
-            ]
-    )
-    async def help(self, ctx, cmd: Optional[str]):
+    @command(name="help", brief='View the Delphi Assistance Menu')
+    async def show_help(self, ctx, cmd: Optional[str]):
         if cmd is None:
-            pass
+            menu = MenuPages(source=HelpMenu(ctx, list(self.bot.commands)),
+                             delete_message_after=True,
+                             timeout=60.0)
+            await menu.start(ctx)
+
         else:
-            if (cmd := get(self.bot.commands, name=cmd)):
+            if (command := get(self.bot.commands, name=cmd)):
                 await self.cmd_help(ctx, command)
 
             else:
-                await ctx.send("That command does not exist, yet.")
+                await ctx.send("That command does not exist.")
 
 
 def setup(bot):

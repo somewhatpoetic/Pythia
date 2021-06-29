@@ -16,7 +16,7 @@ class Poll(commands.Cog):
         print('Poll feature is ready.')
 
     # Commands
-    @commands.command()
+    @commands.command(help='Creates a poll', brief='Create a poll')
     async def poll(self, ctx):
         # Extracting question from message
         rawMessage = ctx.message.content

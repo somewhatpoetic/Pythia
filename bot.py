@@ -1,4 +1,5 @@
 import os
+import discord
 from discord.ext import commands
 from dotenv import load_dotenv
 
@@ -11,9 +12,9 @@ bot = commands.Bot(command_prefix=['.'])
 
 
 # load extension
-@bot.command(hidden=True)
-async def load(ctx, extension):
+def load(ctx, extension):
     bot.load_extension(f'cogs.{extension}')
+
 
 # loading all extensions
 for fname in os.listdir('./cogs'):
@@ -25,5 +26,7 @@ for fname in os.listdir('./cogs'):
 @bot.event
 async def on_ready():
     print(f'{bot.user.name} is ready!')
+    presence = discord.Game(name='.help', type=3)
+    await bot.change_presence(status=discord.Status.online, activity=presence)
 
 bot.run(TOKEN)

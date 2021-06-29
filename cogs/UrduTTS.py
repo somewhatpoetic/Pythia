@@ -12,7 +12,10 @@ class UrduTTS(commands.Cog):
     async def on_ready(self):
         print('UrduTTS is ready.')
 
-    @commands.command()
+    @commands.command(
+        help='Text to speech for multiple languages',
+        brief='Text to speech for multiple languages'
+    )
     async def urduTTS(self, ctx):
         userText = ctx.message.content
         text = userText.replace('.urduTTS ', '')

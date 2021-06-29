@@ -7,7 +7,10 @@ class SpongebobText(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command()
+    @commands.command(
+        help='Outputs text in the Spongebob meme format',
+        brief='Output text in the Spongebob meme format'
+    )
     async def sbt(self, ctx):
         rawMessage = ctx.message.content
         message = rawMessage.replace('.sbt ', '')
@@ -15,7 +18,7 @@ class SpongebobText(commands.Cog):
         letters = list(lower)
 
         for i in range(0, len(letters)):
-            if (i % 2 == 0):
+            if (i % 2 == 0) and not ' ':
                 letters[i] = letters[i].upper()
 
         sbText = ''.join(letters)
