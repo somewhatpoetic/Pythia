@@ -26,7 +26,7 @@ class SpongebobText(Cog):
         offset = 0
         for i in range(0, len(letters)):
             i += offset
-            if (offset % 2 == 0) and (offset < len(letters)):
+            if (i % 2 == 0) and (i < len(letters)):
                 if letters[i] == ' ':
                     letters[i+1] = letters[i+1].upper()
                     offset += 1
