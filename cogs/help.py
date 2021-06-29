@@ -7,7 +7,7 @@ from discord.ext.commands import command
 
 
 def syntax(command):
-    cmd_and_aliases = "|".join([str(command), *command.aliases])
+    cmd_and_aliases = "|".join([str(command))
     params = []
 
     for key, value in command.params.items():
