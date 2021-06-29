@@ -26,12 +26,14 @@ class SpongebobText(Cog):
         offset = 0
         for i in range(0, len(letters)):
             offset += i
-            if (offset % 2 == 0):
+            if (offset % 2 == 0) and (offset < len(letters)):
                 if letters[i] == ' ':
                     letters[offset] = letters[offset].upper()
                     offset += 1
                 else:
                     letters[offset] = letters[offset].upper()
+            else:
+                break
 
         sbText = ''.join(letters)
         await ctx.send(sbText)
