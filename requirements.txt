@@ -4,3 +4,4 @@ emoji
 gtts
 discord.ext.menus
 youtube_dl
+PyNaCl
