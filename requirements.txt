@@ -5,3 +5,4 @@ gtts
 discord.ext.menus
 youtube_dl
 PyNaCl
+ffmpeg

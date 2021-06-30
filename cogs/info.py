@@ -7,11 +7,11 @@ class Info(commands.Cog):
         self.bot = bot
 
     @commands.command(
-        help='General information about Delphi',
-        brief='General information about Delphi'
+        help='General information about Pythia',
+        brief='General information about Pythia'
     )
-    async def Delphi(self, ctx):
-        await ctx.send('I am Delphi. A bot of many abilities.')
+    async def Pythia(self, ctx):
+        await ctx.send('I am Pythia. A bot of many abilities.')
 
 
 def setup(bot):

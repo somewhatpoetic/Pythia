@@ -34,11 +34,11 @@ class HelpMenu(ListPageSource):
 
         embed = Embed(title="Information",
                       description=(
-                          "Welcome to the Delphi Assistance Menu!.\n\nFor more\
+                          "Welcome to the Pythia Assistance Menu!.\n\nFor more\
  information, use the `.help` command followed by whatever command you wish to\
  inquire more about.\nExample: `.help clear`\n\nUse the navigation reactions o\
 n this message to look through all the commands.\n\nAdditionally, if you would\
- like to recieve the Official Delphi Handbook, use the command: `.handbook`"
+ like to recieve the Official Pythia Handbook, use the command: `.handbook`"
                       ),
                       colour=self.ctx.author.colour)
         embed.set_thumbnail(url=self.ctx.guild.me.avatar_url)
@@ -71,7 +71,7 @@ class Help(Cog):
         embed.add_field(name="Command description", value=command.help)
         await ctx.send(embed=embed)
 
-    @command(name="help", brief='View the Delphi Assistance Menu')
+    @command(name="help", brief='View the Pythia Assistance Menu')
     async def show_help(self, ctx, cmd: Optional[str]):
         if cmd is None:
             menu = MenuPages(source=HelpMenu(ctx, list(self.bot.commands)),
