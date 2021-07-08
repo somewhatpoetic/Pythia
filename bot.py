@@ -29,4 +29,5 @@ async def on_ready():
     presence = discord.Game(name='.help', type=3)
     await bot.change_presence(status=discord.Status.online, activity=presence)
 
+
 bot.run(TOKEN)
