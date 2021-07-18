@@ -1,4 +1,5 @@
 import time
+import discord
 from typing import List
 
 from discord.ext.commands import Cog, command
