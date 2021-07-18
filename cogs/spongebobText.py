@@ -68,7 +68,7 @@ class SpongebobText(Cog):
 
         await ctx.send(sbText)
 
-        time.sleep(3)
+        time.sleep(1)
         await ctx.message.delete()
 
     @Cog.listener()
