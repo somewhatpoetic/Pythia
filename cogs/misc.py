@@ -1,11 +1,21 @@
 import time
+import discord
 from discord.ext import commands
+from discord.ext.commands.core import command
 
 
 class Misc(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
+
+    # thank you command - basically a thank you counter
+    # @commands.command(
+    #     help='Just a cool way of showing gratitude'
+    # )
+    # async def thank(self, ctx, user: discord.Member):
+
+
 
     # feedback command
     @commands.command(

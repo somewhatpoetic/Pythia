@@ -6,10 +6,11 @@ from dotenv import load_dotenv
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
-GUILD = os.getenv('DISCORD_GUILD')
 
-bot = commands.Bot(command_prefix=['.'])
+# declaring intents
+intents = discord.Intents().all()
 
+bot = commands.Bot(command_prefix=['.'], intents=intents)
 
 # load extension
 def load(ctx, extension):

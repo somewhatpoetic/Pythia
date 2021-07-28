@@ -1,43 +1,43 @@
-'''
-Feature to create watch parties.
-Use command .watchparty 
+# from inspect import getmembers
+# from discord import client
+# from discord.ext.commands.converter import GuildConverter
+# from typing import List
+# from discord.channel import VoiceChannel
+# from discord.ext.commands import Cog, cog, command
+# import discord
+# import discord.utils
+# import os
+# from dotenv import load_dotenv
 
-use .watchparty
-send direct message to user
-ask for:
-What are you watching?
-When are you hosting the watch party? (now, in x hours, at 3 pm [cst, gmt])
-How early do you want to send a reminder for the watch party (15, 30, hour)
-private or open?
-if private - who are invited? (@username#1234)
-'''
+# load_dotenv()
+# GUILD = os.getenv('DISCORD_GUILD')
 
-from typing import List
-from discord import guild
-from discord.channel import VoiceChannel
-from discord.ext.commands import Cog, command
-import discord
-import discord.utils
+# class WatchParty(Cog):
 
-class WatchParty(Cog):
+#     def __init__(self, bot):
+#         self.bot = bot
 
-    def __init__(self, bot):
-        self.bot = bot
-
-    @Cog.listener()
-    async def on_ready(self):
-        print('Watch party feature is ready.')
-
-    @command()
-    async def watchparty(self, ctx):
-        message = ctx.message.content.replace('.watchparty ', '')
-        messageList: List[str] = message.split(',')
-        title: str = messageList[0]
+#     @Cog.listener()
+#     async def on_ready(self):
         
-        category = discord.utils.get(ctx.guild.categories, id=866142892254691348)
+#     # @Cog.listener()
+#     # async def (self):
+#     #     #chan: VoiceChannel = discord.utils.get(ctx.guild.voice_channels, id=853735209144811590)
+#     #     print(discord.Guild.id)
+        
+#         #vc = ctx.guild.get_channel(853735209144811590)
+        
+#         # vc = discord.utils.get(ctx.message.server.channels, id=853735209144811590)
 
-        await ctx.guild.create_voice_channel(name=title, category=category)
+#         # for x in vc.members:
+#         #     print(x)
+#         # for x in chan.members:
+#         #     print(x)
+
+#         # x =chan.members[1].voice.self_stream
+#         # print(x)
 
 
-def setup(bot):
-    bot.add_cog(WatchParty(bot))
+
+# def setup(bot):
+#     bot.add_cog(WatchParty(bot))
