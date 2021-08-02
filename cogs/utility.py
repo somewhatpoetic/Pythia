@@ -5,19 +5,6 @@ class Misc(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
-    
-    # feedback command
-    @commands.command(
-        help='Sends suggestions/complaints to developer.',
-        brief='Send feedback to developer'
-    )
-    async def feed(self, ctx, *args):
-        with open('suggestions.txt', 'a') as f:
-            f.write(" ".join(args[:]) + '\n')
-        await ctx.send('Thank you for your feedback! Please let me know if you'
-                       ' have anymore.', delete_after=3)
-        time.sleep(2)
-        await ctx.message.delete()
 
     # clear command
     @commands.command(
