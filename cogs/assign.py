@@ -1,15 +1,15 @@
 import discord
-from discord.ext import commands
+from discord.ext import Cog
 
 
-class Assign(commands.Cog):
+class Assign(Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.Cog.listener()
-    async def on_member_join(self, member):
-        role = discord.utils.get(member.server.roles, name='Tribus')
-        await self.bot.add_roles(member, role)
+    @Cog.listener()
+    async def on_member_join(member):
+        default_role = discord.utils.get(member.guild.roles, id=853705439338168430)
+        await member.add_roles(default_role)
 
 
 def setup(bot):
