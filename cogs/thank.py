@@ -1,1 +1,0 @@
-#gratitude and helpfulness counters system
