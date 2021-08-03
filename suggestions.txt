@@ -1,6 +1,0 @@
-implement suggestions using database
-Connect this to a non relational database like Sahl suggested
-add aaron_bot back in
-something something
-
-something somethign
